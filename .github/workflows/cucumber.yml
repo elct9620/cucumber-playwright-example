@@ -23,6 +23,8 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
         cache: 'yarn'
+    - name: Install Playwright Browsers
+        run: npx playwright install --with-deps
     - run: yarn install
     - name: Run E2E Testing
       run: yarn test:e2e
