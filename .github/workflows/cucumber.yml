@@ -12,7 +12,6 @@ jobs:
       matrix:
         os:
           - ubuntu-latest
-          - windows-latest
         node-version: [14.x, 16.x, 17.x, 18.x]
       fail-fast: false
 
@@ -27,7 +26,7 @@ jobs:
       run: npx playwright install --with-deps
     - run: yarn install
     - name: Run E2E Testing
-      run: yarn test:e2e -f progress-bar -f json
+      run: yarn test:e2e -f json:cucumber-report.json -f progress-bar
     - uses: deblockt/cucumber-report-annotations-action@v1.7
       with:
         access-token: ${{ secrets.GITHUB_TOKEN }}
