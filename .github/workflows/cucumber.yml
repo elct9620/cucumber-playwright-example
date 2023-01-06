@@ -27,4 +27,8 @@ jobs:
         run: npx playwright install --with-deps
     - run: yarn install
     - name: Run E2E Testing
-      run: yarn test:e2e
+      run: yarn test:e2e -f progress-bar -f json
+    - uses: deblockt/cucumber-report-annotations-action@v1.7
+      with:
+        access-token: ${{ secrets.GITHUB_TOKEN }}
+        path: "**/cucumber-report.json"
